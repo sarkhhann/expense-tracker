@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Expense Tracker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="container">
+
+        <aside>
+            <div class="logo">
+                <span>Expense Tracker</span>
+            </div>
+
+            <nav>
+                <a href="#" class="active">Dashboard</a>
+                <a href="#">Transactions</a>
+                <a href="#">Budgets</a>
+                <a href="#">Reports</a>
+                <a href="#">Settings</a>
+            </nav>
+        </aside>
+
+        <main class="dashboard page active-page">
+
+            <header class="header-side">
+
+                <h3>Dashboard</h3>
+                
+                <div class="header-buttons">
+                    <button type="button" class="add-btn">+Add</button>
+                    <button type="button" aria-label="Gecə-gündüz rejimi" class="theme-btn">🌙</button>
+                </div>
+            </header>
+
+            <div class="stats-cards">
+
+                <article class="income">
+                    <span>Income</span>
+                    <p>0</p>
+                </article>
+
+                <article class="expense">
+                    <span>Expense</span>
+                    <p>0</p>
+                </article>
+
+                <article class="net">
+                    <span>Net</span>
+                    <p>0</p>
+                </article>
+
+                <article class="transactions">
+                    <span>Transactions</span>
+                    <p>0</p>
+                </article>
+            </div>
+
+            <section class="charts-section">
+
+                <article>
+                    <div class="chart-header">
+                        <h4>Trend this month</h4>
+                        <a href="#" class="full-reports-link">Full reports →</a>
+                    </div>
+
+                    <div class="chart-area">
+
+                    </div>
+                </article>
+
+                <article>
+
+                    <div class="chart-header">
+                        <h4>Spend by category</h4>
+                    </div>
+
+                    <div class="chart-area">
+
+                    </div>
+                </article>
+            </section>
+
+            <section class="recent-transactions">
+
+                <div class="section-header">
+                    <h4>Recent transactions</h4>
+                    <a href="#" class="see-all-link">See all →</a>
+                </div>
+
+                <div class="transactions-list"></div>
+            </section>
+
+        </main>
+
+        <div class="transactions-page page">
+
+            <header class="header-side">
+                <h3>Transactions</h3>
+            </header>
+
+            <div class="search-area">
+                <input type="search" class="search-input" placeholder="Search transactions...">
+
+                <select class="type-filter">
+                    <option value="all">All types</option>
+                    <option value="income">Income</option>
+                    <option value="expense">Expense</option>
+                </select>
+
+                <select class="date-sort">
+                    <option value="newest">Newest first</option>
+                    <option value="oldest">Oldest first</option>
+                </select>
+            </div>
+
+            <div class="all-transactions-list">
+
+            </div>
+        </div>
+
+        <div class="budgets-page page">
+
+            <header class="header-side">
+
+                <h3>Budgets</h3>
+                <button type="button" class="add-budget-btn">+ Add Budget</button>
+            </header>
+
+            <div class="budgets-list"></div>
+        </div>
+
+        <div class="reports-page page">
+
+            <header class="header-side">
+                <h3>Reports</h3>
+                <input type="month" class="report-month">
+            </header>
+
+            <div class="reports-content"></div>
+        </div>
+
+        <div class="settings-page page">
+
+            <header class="header-side">
+
+                <h3>Settings</h3>
+            </header>
+
+            <div class="settings-content">
+
+                <label for="currency-select">Currency</label>
+
+                <select id="currency-select">
+                    <option value="USD">USD ($)</option>
+                    <option value="EUR">EUR (€)</option>
+                    <option value="AED">AED (د.إ)</option>
+                    <option value="AZN">AZN (₼)</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="modal-overlay">
+
+            <div class="modal">
+                <h3>Add Transaction</h3>
+
+                <form id="transaction-form">
+
+                    <div class="form-group">
+                        <label for="title">Title</label>
+                        <input type="text" id="title" name="title" placeholder="e.g. Groceries" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="amount">Amount</label>
+                        <input type="number" id="amount" name="amount" min="0.01" step="0.01" placeholder="0.00" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select name="type" id="type">
+                            <option value="expense">Expense</option>
+                            <option value="income">Income</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="category">Category</label>
+                        <select id="category" name="category">
+                            <option value="Food & Dining">Food & Dining</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Bills & Utilities">Bills & Utilities</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Health">Health</option>
+                            <option value="Salary">Salary</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="date">Date</label>
+                        <input type="date" id="date" name="date" required>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="cancel-btn">Cancel</button>
+                        <button type="submit" id="save-btn">Save</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <div class="budget-modal-overlay">
+
+            <div class="modal">
+
+                <h3>Add Budget</h3>
+
+                <form id="budget-form">
+
+                    <div class="form-group">
+
+                        <label for="budget-category">Category</label>
+                        <select id="budget-category" required>
+                            <option value="Food & Dining">Food & Dining</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Transport">Transport</option>
+                            <option value="Bills & Utilities">Bills & Utilities</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Health">Health</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+
+                        <label for="budget-limit">Monthly Limit</label>
+
+                        <input 
+                            type="number"
+                            id="budget-limit"
+                            min="0.01"
+                            step="0.01"
+                            placeholder="e.g. 500"
+                            required
+                        >
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="button" id="budget-cancel-btn">Cancel</button>
+                        <button type="submit" id="budget-save-btn">Save Budget</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div>
+    
+    <script src="expensetracker.js"></script>
+</body>
+</html>
