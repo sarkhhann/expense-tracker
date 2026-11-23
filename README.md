@@ -29,3 +29,8 @@ https://sarkhhann.github.io/expense-tracker/
 ## Source Code
 
 https://github.com/sarkhhann/expense-tracker
+
+
+## 📸 Screenshots
+
+![Expense Tracker Dashboard](screenshots/dashboard.png)
